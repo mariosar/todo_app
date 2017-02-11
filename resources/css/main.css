@@ -1,0 +1,13 @@
+.container{
+	max-width: 450px;
+}
+.item{
+	margin: 0px 0px;
+}
+.item .name{
+	padding: 3px 0px;
+}
+.item .name.completed{
+	text-decoration: line-through;
+	color: #999;
+}
