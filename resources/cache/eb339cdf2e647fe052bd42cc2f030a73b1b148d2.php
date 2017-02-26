@@ -1,5 +1,3 @@
-;
-
 <?php $__env->startSection('content'); ?>
 
 	<h1>My Todos</h1>
@@ -24,15 +22,13 @@
 
   <hr>
 
-  
-  <?php if(count($tasks) > 0): ?>
-  	<div class="tasks-container">
-  		<?php echo $__env->renderEach('tasks._task', $tasks, 'task'); ?>	
-	  </div>
-  <?php else: ?>
-  	<div class="alert alert-info">You have no tasks</div>
-  <?php endif; ?>
-
+  <div class="tasks-container">
+	  <?php if(count($tasks) > 0): ?>
+			<?php echo $__env->renderEach('tasks._task', $tasks, 'task'); ?>			  
+	  <?php else: ?>
+	  	<?php echo $__env->make('tasks._tasksAlert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	  <?php endif; ?>
+  </div>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.application', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

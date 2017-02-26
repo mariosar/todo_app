@@ -1,5 +1,9 @@
 <?php
 
+if($_POST['ajax'] == '1'){
+	header('Content-Type: text/json');
+}
+
 require_once __DIR__ .'/config.php';
 
 // Create Tasks
@@ -27,6 +31,7 @@ if($_POST['tasks'] == 'create'){
 		$returnObj->content = ob_get_clean();
 
 		echo json_encode($returnObj);
+		return;
 	}
 }
 
@@ -43,6 +48,10 @@ if($_POST['tasks'] == 'delete'){
 		$returnObj = new stdClass();
 		$returnObj->action = $_POST['tasks'];
 		$returnObj->id = $taskId;
+
+		ob_start();
+		echo $blade->make('tasks/_tasksAlert');
+		$returnObj->content = ob_get_clean();
 
 		echo json_encode($returnObj);
 	}

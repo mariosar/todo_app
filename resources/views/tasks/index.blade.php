@@ -1,4 +1,4 @@
-@extends('layouts.application');
+@extends('layouts.application')
 
 @section('content')
 
@@ -24,13 +24,11 @@
 
   <hr>
 
-  
-  @if (count($tasks) > 0)
-  	<div class="tasks-container">
-  		@each ('tasks._task', $tasks, 'task')	
-	  </div>
-  @else
-  	<div class="alert alert-info">You have no tasks</div>
-  @endif
-
+  <div class="tasks-container">
+	  @if (count($tasks) > 0)
+			@each ('tasks._task', $tasks, 'task')			  
+	  @else
+	  	@include('tasks._tasksAlert')
+	  @endif
+  </div>
 @endsection

@@ -18,14 +18,21 @@
 	<script type="text/javascript">
 		// Handles successful Ajax
 		var successHandler = function(data, status, jqXHR){
+			console.log(data);
+			console.log(status);
+			console.log(jqXHR);
+			$("#newTask").val("");
 			if(data['action'] == 'markComplete'){
 				$("*[data-task-id='"+ data['id'] +"']").replaceWith(data['content']);
 			} else if(data['action'] == 'delete'){
 				$("*[data-task-id='"+ data['id'] +"']").remove();
+				if($(".tasks-container").children().length < 1){
+					$(".tasks-container").append(data['content']);
+				}
 			} else if(data['action'] == 'create'){
-				$("tasks-container").append(data['content']);
+				$(".alert").remove();
+				$(".tasks-container").append(data['content']);
 			}
-
 
 			$("form").unbind().submit(submitHandler);
 		}
